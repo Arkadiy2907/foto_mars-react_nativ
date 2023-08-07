@@ -9,10 +9,14 @@ export default function Select() {
 
   const pressHandler = (v) => {
     // setValue(v)
-    let images;
+    let images = [];
     axios.get('https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=2015-6-3&api_key=DEMO_KEY')
       .then(response => {
-        images = response.data.photos.map(photo => photo.img_src);
+        for (const { id, img_src: imgSrc } of response.data.photos) {
+          images.push({ id, imgSrc });
+        }
+
+        // images = response.data.photos.map(photo => { photo.id, photo.img_src });
         // setData(response.data);
         console.log('images===========', images);
       })
