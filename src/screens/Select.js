@@ -1,5 +1,5 @@
-import { SafeAreaView, StyleSheet, Text, View, Button, Image, TextInput } from 'react-native';
-import React, { useState } from 'react';
+import { SafeAreaView, StyleSheet, Text, View, Image  } from 'react-native';
+import React from 'react';
 import MyForm from '../components/MyForm';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
@@ -16,7 +16,7 @@ export default function Select() {
 
   const pressHandler = (v) => {
     // setValue(v)
-    console.log(v)
+    // console.log(v)
     let images = [];
     axios.get(url)
       .then(response => {
