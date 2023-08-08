@@ -8,29 +8,24 @@ export default function Cards({ route }) {
     navigation.goBack();
   }
 
-  console.log(route.params)
+  console.log(route.params[0][0].date)
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* <ImageBackground source={require('../../assets/images/Mars.webp')} style={{ width: '100%', height: '100%' }}> */}
-      {/* <Button onPress={goToBack}></Button> */}
       <TouchableOpacity
         activeOpacity={0.5}
         onPress={() => goToBack()}
       >
         <Text>go to back</Text>
-
       </TouchableOpacity >
       <View>
-        <Text>MARS</Text>
-        <Text>by Curiosity</Text>
+        <Text>{route.params[0][0].camera}</Text>
+        <Text>{route.params[0][0].date}</Text>
       </View>
-      <View>
-        {route.params?.map(el => (
-          <Image key={el.id} source={{ uri: el.imgSrc }}
-            style={{ width: 109, height: 109 }}
+      <View style={styles.cards}>
+        {route.params[1]?.map(el => (
+          <Image style={styles.card} key={el.id} source={{ uri: el.imgSrc }}
           />
-
         ))}
       </View>
       {/* </ImageBackground> */}
@@ -41,8 +36,21 @@ export default function Cards({ route }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#DCCEBE',
     alignItems: 'center',
     justifyContent: 'center',
   },
+  cards: {
+    flexDirection: 'row',
+    gap: 3,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
+  },
+  card: {
+    width: 109,
+    height: 109,
+    borderRadius: 7,
+  },
+
 });
