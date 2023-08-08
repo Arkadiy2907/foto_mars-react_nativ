@@ -1,20 +1,45 @@
-import { SafeAreaView, StyleSheet, Text, View, Image, ImageBackground } from 'react-native';
-
+import { SafeAreaView, StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 export default function Card({ route }) {
+  const navigation = useNavigation();
 
-  console.log(route.params[0])
+  const goToBack = () => {
+    navigation.goBack();
+  }
+
+  const linkToSelect = () => {
+    navigation.navigate("Welcome")
+  }
+
+
+  // console.log(route.params[0])
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* <ImageBackground source={require('../../assets/images/Mars.webp')} style={{ width: '100%', height: '100%' }}> */}
-      <View style={styles.text}>
-        <Text style={{ color: '#FFFFFF' }}>Photo ID</Text>
-        <Text style={{ color: '#FFFFFF' }}>{route.params[0].id}</Text>
-      </View>
+      <View style={styles.header}>
+        <TouchableOpacity
+          style={{ padding: 10 }}
+          activeOpacity={0.5}
+          onPress={() => goToBack()}
+        >
+          <Image style={{ width: 15, height: 15, objectFit: 'cover' }} source={require('../../assets/icons/backW.png')} />
+        </TouchableOpacity >
+        <View style={styles.text}>
+          <Text style={{ color: '#FFFFFF', textAlign: 'center' }}>Photo ID</Text>
+          <Text style={{ color: '#FFFFFF', fontSize: 20 }}>{route.params[0].id}</Text>
+        </View>
+        <TouchableOpacity
+          style={{ padding: 10 }}
+          activeOpacity={0.5}
+          onPress={() => linkToSelect()}
+        >
+          <Image style={{ width: 20, height: 20 }} source={require('../../assets/icons/share.png')} />
+        </TouchableOpacity >
 
+      </View>
       <Image style={styles.card} source={{ uri: route.params[0].imgSrc }} />
-      {/* </ImageBackground> */}
+
     </SafeAreaView >
   );
 }
@@ -26,10 +51,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 7,
-
   },
-  text: {
-    marginBottom: 10,
+  header: {
+    flexDirection: 'row',
+    width: '90%',
+    paddingTop: 30,
+    alignItems: 'center',
+    marginBottom: 30,
+    justifyContent: 'space-between',
   },
 
   card: {

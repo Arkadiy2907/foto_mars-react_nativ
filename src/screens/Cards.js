@@ -1,6 +1,5 @@
-import { SafeAreaView, StyleSheet, Text, View, TouchableOpacity, Image, ImageBackground } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import React, { useState } from 'react';
 
 
 export default function Cards({ route }) {
@@ -36,9 +35,10 @@ export default function Cards({ route }) {
           <Image style={{ width: 30, height: 30 }} source={require('../../assets/icons/back.png')} />
         </TouchableOpacity >
         <View>
-          <Text>{route.params[0][0].camera}</Text>
-          <Text>{route.params[0][0].date}</Text>
+          <Text style={{ fontSize: 20 }}>{route.params[0][0].camera}</Text>
+          <Text style={{ textAlign: 'center' }}>{route.params[0][0].date}</Text>
         </View>
+        <View></View>
       </View>
       <View style={styles.cards}>
         {route.params[1]?.map(el => (
@@ -65,14 +65,16 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: 'row',
+    width: '90%',
     paddingTop: 30,
     alignItems: 'center',
     marginBottom: 30,
+    justifyContent: 'space-between',
   },
 
   cards: {
     flexDirection: 'row',
-    gap: 10,
+    gap: 12,
     alignItems: 'center',
     justifyContent: 'center',
     flexWrap: 'wrap',
