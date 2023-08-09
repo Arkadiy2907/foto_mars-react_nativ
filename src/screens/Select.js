@@ -1,29 +1,37 @@
-import { SafeAreaView, StyleSheet, Text, View, Button, Image, TextInput } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, View, Image, ActivityIndicator } from 'react-native';
 import React, { useState } from 'react';
 import MyForm from '../components/MyForm';
-import axios from 'axios'
+import { useNavigation } from '@react-navigation/native';
+import axios from 'axios';
+import { url, getUrl } from '../helper/var';
 
 export default function Select() {
+  const navigation = useNavigation();
+  const [isLoading, setIsLoading] = useState(false);
 
-  const [data, setData] = useState(null);
+  const linkToSelect = (arr) => {
+    navigation.navigate("Cards", arr)
+  }
 
   const pressHandler = (v) => {
-    // setValue(v)
-    let images;
-    axios.get('https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=2015-6-3&api_key=DEMO_KEY')
+
+    setIsLoading(true);
+    let images = [];
+    console.log(v.camera);
+
+    axios.get(getUrl(v.date, v.camera))
       .then(response => {
-        images = response.data.photos.map(photo => photo.img_src);
-        // setData(response.data);
-        console.log('images===========', images);
+        for (const { id, img_src: imgSrc } of response.data.photos) {
+          images.push({ id, imgSrc });
+        }
+        linkToSelect([[v], images]);
+        setIsLoading(false);
       })
       .catch(error => {
         console.log('error=', error);
+        setIsLoading(false);
       });
-
-    // console.log(v, data)
   }
-
-
 
   return (
     <SafeAreaView style={styles.container}>
@@ -32,10 +40,16 @@ export default function Select() {
       </View>
       <View style={styles.body}>
         <MyForm pressHandler={pressHandler} />
-        <Image style={{ width: '100%' }} source={require('../../assets/images/car.webp')} />
+        {isLoading ? (
+          <View style={styles.loader}>
+            <ActivityIndicator size="large" color="#000" />
+          </View>
+        ) : (
+          <Image style={{ width: '100%' }} source={require('../../assets/images/car.webp')} />
+        )}
       </View>
 
-    </SafeAreaView >
+    </SafeAreaView>
   );
 }
 
@@ -46,5 +60,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#DCCEBE',
     paddingTop: 30,
     justifyContent: 'space-between',
+  },
+  loader: {
+    marginTop: 45,
+    marginBottom: 235,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
