@@ -12,9 +12,6 @@ export default function Card({ route }) {
     navigation.navigate("Welcome")
   }
 
-
-  // console.log(route.params[0])
-
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -23,7 +20,7 @@ export default function Card({ route }) {
           activeOpacity={0.5}
           onPress={() => goToBack()}
         >
-          <Image style={{ width: 15, height: 15, objectFit: 'cover' }} source={require('../../assets/icons/backW.png')} />
+          <Image style={{ width: 25, height: 25, objectFit: 'cover' }} source={require('../../assets/icons/backW.png')} />
         </TouchableOpacity >
         <View style={styles.text}>
           <Text style={{ color: '#FFFFFF', textAlign: 'center' }}>Photo ID</Text>

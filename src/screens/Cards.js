@@ -1,56 +1,44 @@
-import { SafeAreaView, StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, View, TouchableOpacity, Image, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { formaScreentDate, getLabel } from '../helper/var';
 
 
 export default function Cards({ route }) {
   const navigation = useNavigation();
 
-  const goToBack = () => {
-    navigation.goBack();
-  }
-
-  const linkToSelect = (arr) => {
-    navigation.navigate("Card", arr)
-  }
-
-  // console.log(route.params[0][0].date)
-  // const [card, setCard] = useState(route.params[1])
-
-  const getCard = (id) => {
-    // setCard(route.params[1]?.filter(el => el.id == id))
-    linkToSelect(route.params[1]?.filter(el => el.id == id))
-  }
-
-
-  // console.log(card);
+  const goToBack = () => navigation.goBack();
+  const linkToSelect = arr => navigation.navigate("Card", arr)
+  const getCard = id => linkToSelect(route.params[1]?.filter(el => el.id == id))
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <TouchableOpacity
-          style={{ padding: 10 }}
+          style={{ padding: 5 }}
           activeOpacity={0.5}
           onPress={() => goToBack()}
         >
           <Image style={{ width: 30, height: 30 }} source={require('../../assets/icons/back.png')} />
         </TouchableOpacity >
         <View>
-          <Text style={{ fontSize: 20 }}>{route.params[0][0].camera}</Text>
-          <Text style={{ textAlign: 'center' }}>{route.params[0][0].date}</Text>
+          <Text style={{ fontSize: 20 }}>{getLabel(route.params[0][0].camera)}</Text>
+          <Text style={{ textAlign: 'center' }}>{formaScreentDate(route.params[0][0].date)}</Text>
         </View>
         <View></View>
       </View>
-      <View style={styles.cards}>
-        {route.params[1]?.map(el => (
-          <TouchableOpacity
-            activeOpacity={0.5}
-            onPress={() => getCard(el.id)}
-            key={el.id}
-          >
-            <Image style={styles.card} key={el.id} source={{ uri: el.imgSrc }} />
-          </TouchableOpacity >
-        ))}
-      </View>
+      <ScrollView>
+        <View style={styles.cards}>
+          {route.params[1]?.map(el => (
+            <TouchableOpacity
+              activeOpacity={0.5}
+              onPress={() => getCard(el.id)}
+              key={el.id}
+            >
+              <Image style={styles.card} key={el.id} source={{ uri: el.imgSrc }} />
+            </TouchableOpacity >
+          ))}
+        </View>
+      </ScrollView>
     </SafeAreaView >
   );
 }
@@ -84,5 +72,4 @@ const styles = StyleSheet.create({
     height: 109,
     borderRadius: 7,
   },
-
 });

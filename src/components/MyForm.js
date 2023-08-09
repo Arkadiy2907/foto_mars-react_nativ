@@ -1,13 +1,15 @@
 import React from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { Formik, Field } from 'formik';
+import validationSchema from './ValidationSchema';
 import { varCam } from '../helper/var';
 
-const MyForm = ({ pressHandler }) => {
+const MyForm = ({ pressHandler, errors }) => {
   return (
     <Formik
-      initialValues={{ camera: 'Front Hazard Avoidance Camera', date: '18.10.2021' }}
+      initialValues={{ camera: 'FHAZ', date: '' }}
+      validationSchema={validationSchema}
       onSubmit={(values) => pressHandler(values)}
     >
       {(props) => (
@@ -24,16 +26,19 @@ const MyForm = ({ pressHandler }) => {
             </Field>
           </View>
           <Text style={{ paddingLeft: 10 }}>Date</Text>
-          <View style={styles.field}>
+          <View style={styles.fieldDate}>
             <TextInput
-              style={styles.fieldDate}
               name="date"
               value={props.values.date}
               onChangeText={props.handleChange('date')}
-              placeholder='введите дату по шаблону 31.12.2001'
+              placeholder='введите дату по шаблону дд.мм.гггг'
               keyboardType='numeric'
-            >
-            </TextInput>
+            />
+            <Image
+              source={require('../../assets/icons/calendar.png')}
+              style={{ width: 20, height: 20, marginRight: 10 }}
+            />
+            {props.errors.date && <Text style={styles.errorText}>{props.errors.date}</Text>}
           </View>
           <TouchableOpacity
             activeOpacity={0.5}
@@ -57,10 +62,19 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     margin: 10,
     marginBottom: 25,
-
+    position: 'relative'
   },
   fieldDate: {
     padding: 12,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: '#FFFFFF',
+    borderRadius: 10,
+    margin: 10,
+    marginBottom: 25,
+    position: 'relative'
+
   },
   btn: {
     backgroundColor: '#BF2E0E',
@@ -68,6 +82,14 @@ const styles = StyleSheet.create({
     padding: 15,
     margin: 10,
     borderRadius: 10,
+  },
+  errorText: {
+    position: 'absolute',
+    bottom: 5,
+    left: 20,
+    color: 'red',
+    fontSize: 10,
+    marginTop: 5,
   },
 });
 
