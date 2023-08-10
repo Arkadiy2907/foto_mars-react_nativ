@@ -2,8 +2,9 @@ import { SafeAreaView, StyleSheet, Text, View, Image, ActivityIndicator } from '
 import React, { useState } from 'react';
 import MyForm from '../components/MyForm';
 import { useNavigation } from '@react-navigation/native';
-import axios from 'axios';
-import { url, getUrl } from '../helper/var';
+import pressHandler from '../components/Api';
+// import axios from 'axios';
+// import { getUrl } from '../helper/var';
 
 export default function Select() {
   const navigation = useNavigation();
@@ -13,25 +14,28 @@ export default function Select() {
     navigation.navigate("Cards", arr)
   }
 
-  const pressHandler = (v) => {
+  // const pressHandler = (v) => {
+  //   setIsLoading(true);
+  //   let images = [];
 
-    setIsLoading(true);
-    let images = [];
-    console.log(v.camera);
+  //   axios.get(getUrl(v.date, v.camera))
+  //     .then(response => {
+  //       for (const { id, img_src: imgSrc } of response?.data?.photos) {
+  //         images.push({ id, imgSrc });
+  //       }
+  //       linkToSelect([[v], images]);
+  //     })
+  //     .catch(error => {
+  //       console.log('error=', error);
+  //     })
+  //     .finally(() => {
+  //       setIsLoading(false);
+  //     });
+  // }
 
-    axios.get(getUrl(v.date, v.camera))
-      .then(response => {
-        for (const { id, img_src: imgSrc } of response.data.photos) {
-          images.push({ id, imgSrc });
-        }
-        linkToSelect([[v], images]);
-        setIsLoading(false);
-      })
-      .catch(error => {
-        console.log('error=', error);
-        setIsLoading(false);
-      });
-  }
+  const handlePress = (v) => {
+    pressHandler(v, linkToSelect, setIsLoading);
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -39,7 +43,7 @@ export default function Select() {
         <Text style={{ textAlign: 'center' }}>Select Camera and Date</Text>
       </View>
       <View style={styles.body}>
-        <MyForm pressHandler={pressHandler} />
+        <MyForm pressHandler={handlePress} />
         {isLoading ? (
           <View style={styles.loader}>
             <ActivityIndicator size="large" color="#000" />
