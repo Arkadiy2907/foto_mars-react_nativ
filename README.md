@@ -1,6 +1,6 @@
 # App-React-Native
 
-#Описание приложения "Mars Rover Photos":
+#Описание приложения "foto_mars-react_nativ":
 Данное приложение позволяет просматривать фотографии, полученные камерами марсохода Curiosity с помощью открытого API NASA.(https://api.nasa.gov.)
 Используется дизайн из Figma (https://www.figma.com/file/yRFsFzgRwkQZb7ghvxnyGQ/Mars-by-Curiosity-iOS?type=design&node-id=0-1&mode=design&t=itF8CjEHHIh7XWUB-0)
 
