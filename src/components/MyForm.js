@@ -45,7 +45,7 @@ const MyForm = ({ pressHandler, errors }) => {
             style={styles.btn}
             onPress={props.handleSubmit}
           >
-            <Text style={{ textAlign: 'center', color: 'white' }}>
+            <Text style={{ textAlign: 'center', color: '#FFFFFF' }}>
               Explore
             </Text>
           </TouchableOpacity>

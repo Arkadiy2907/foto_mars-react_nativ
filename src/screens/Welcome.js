@@ -1,4 +1,4 @@
-import { SafeAreaView, StyleSheet, Image, Text, View, ImageBackground, TouchableOpacity } from 'react-native';
+import { SafeAreaView, StyleSheet, Image, ImageBackground, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 export default function Welcome() {

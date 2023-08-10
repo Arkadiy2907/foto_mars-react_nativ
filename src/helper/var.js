@@ -14,13 +14,11 @@ export const getLabel = v => varCam.find(el => el.value === v).label;
 
 const key = '3hG9LrKvhAqlZDQ6lO8L1RamMiyMdmg0rySFlVFJ';//временный ключ
 const demoKey = 'DEMO_KEY';//подставить если временный ключ перестал работать
-export const url = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=2015-6-3&api_key=${key}`
-
 
 const getUrlFormatDate = d => {
-  let day = d.getDate()
-  let month = d.getMonth() + 1
-  let year = d.getFullYear()
+  const day = d.getDate()
+  const month = d.getMonth() + 1
+  const year = d.getFullYear()
   return `${year}-${month}-${day}`
 }
 
@@ -37,7 +35,6 @@ const getCorrectDate = d => {
 }
 
 export const getUrl = (d, c) => `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=${getCorrectDate(d)}&camera=${c.toLowerCase()}&api_key=${key}`
-
 
 export const formaScreentDate = (d) => {
   const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
