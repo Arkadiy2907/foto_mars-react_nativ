@@ -14,15 +14,14 @@ export default function Cards({ route }) {
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <TouchableOpacity
-          style={{ padding: 5 }}
           activeOpacity={0.5}
           onPress={() => goToBack()}
         >
-          <Image style={{ width: 30, height: 30 }} source={require('../../assets/icons/back.png')} />
+          <Image style={styles.iconBack} source={require('../../assets/icons/back.png')} />
         </TouchableOpacity >
         <View>
-          <Text style={{ fontSize: 20 }}>{getLabel(route.params[0][0].camera)}</Text>
-          <Text style={{ textAlign: 'center' }}>{formaScreentDate(route.params[0][0].date)}</Text>
+          <Text style={styles.cameraText}>{getLabel(route.params[0][0].camera)}</Text>
+          <Text style={styles.dateText}>{formaScreentDate(route.params[0][0].date)}</Text>
         </View>
         <View></View>
       </View>
@@ -59,7 +58,17 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     justifyContent: 'space-between',
   },
-
+  iconBack: {
+    width: 30,
+    height: 30,
+    padding: 5,
+  },
+  cameraText: {
+    fontSize: 20,
+  },
+  dateText: {
+    textAlign: 'center',
+  },
   cards: {
     flexDirection: 'row',
     gap: 12,
