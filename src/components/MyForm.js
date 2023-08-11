@@ -27,7 +27,12 @@ const MyForm = ({ pressHandler }) => {
               dropdownIconColor="#FFFFFF"
             >
               {varCam?.map(el =>
-                <Picker.Item label={el.label} value={el.value} key={el.id} />)}
+                <Picker.Item label={el.label} value={el.value} key={el.id}>
+                  <FontWrapper>
+                    <Text style={styles.textPicker}>{el.label}</Text>
+                  </FontWrapper>
+                </Picker.Item>
+              )}
             </Field>
             <Image
               source={require('../../assets/icons/dropdown.png')}
@@ -93,6 +98,10 @@ const styles = StyleSheet.create({
     width: 20,
     height: 20,
     marginRight: 10,
+  },
+  textPicker: {
+    fontFamily: 'dosis-light',
+    fontSize: 17,
   },
   fieldDate: {
     padding: 12,
