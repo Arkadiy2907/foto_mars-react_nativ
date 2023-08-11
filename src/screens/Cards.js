@@ -1,6 +1,7 @@
 import { SafeAreaView, StyleSheet, Text, View, TouchableOpacity, Image, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { formaScreentDate, getLabel } from '../helper/var';
+import FontWrapper from '../components/FontWrapper';
 
 
 export default function Cards({ route }) {
@@ -19,10 +20,12 @@ export default function Cards({ route }) {
         >
           <Image style={styles.iconBack} source={require('../../assets/icons/back.png')} />
         </TouchableOpacity >
-        <View>
-          <Text style={styles.cameraText}>{getLabel(route.params[0][0].camera)}</Text>
-          <Text style={styles.dateText}>{formaScreentDate(route.params[0][0].date)}</Text>
-        </View>
+        <FontWrapper>
+          <View>
+            <Text style={styles.cameraText}>{getLabel(route.params[0][0].camera)}</Text>
+            <Text style={styles.dateText}>{formaScreentDate(route.params[0][0].date)}</Text>
+          </View>
+        </FontWrapper>
         <View></View>
       </View>
       <ScrollView>
@@ -64,10 +67,13 @@ const styles = StyleSheet.create({
     padding: 5,
   },
   cameraText: {
-    fontSize: 20,
+    fontSize: 22,
+    fontFamily: 'dosis-bold',
   },
   dateText: {
     textAlign: 'center',
+    fontFamily: 'dosis-light',
+    fontSize: 16,
   },
   cards: {
     flexDirection: 'row',

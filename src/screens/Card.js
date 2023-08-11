@@ -1,5 +1,6 @@
 import { SafeAreaView, StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import FontWrapper from '../components/FontWrapper';
 
 export default function Card({ route }) {
   const navigation = useNavigation();
@@ -21,10 +22,12 @@ export default function Card({ route }) {
         >
           <Image style={styles.icon} source={require('../../assets/icons/backW.png')} />
         </TouchableOpacity >
-        <View>
-          <Text style={styles.titleIdText}>Photo ID</Text>
-          <Text style={styles.idText}>{route.params[0].id}</Text>
-        </View>
+        <FontWrapper>
+          <View>
+            <Text style={styles.titleIdText}>Photo ID</Text>
+            <Text style={styles.idText}>{route.params[0].id}</Text>
+          </View>
+        </FontWrapper>
         <TouchableOpacity
           activeOpacity={0.5}
           onPress={() => linkToSelect()}
@@ -57,10 +60,13 @@ const styles = StyleSheet.create({
   titleIdText: {
     textAlign: 'center',
     color: '#FFFFFF',
+    fontFamily: 'dosis-light',
+    fontSize: 16,
   },
   idText: {
     color: '#FFFFFF',
-    fontSize: 20
+    fontSize: 20,
+    fontFamily: 'dosis-bold',
   },
   icon: {
     width: 22,
