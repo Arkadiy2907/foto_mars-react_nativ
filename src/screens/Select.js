@@ -18,8 +18,8 @@ export default function Select() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.title}>
-        <Text style={{ textAlign: 'center' }}>Select Camera and Date</Text>
+      <View>
+        <Text style={styles.title}>Select Camera and Date</Text>
       </View>
       <View style={styles.body}>
         <MyForm pressHandler={handlePress} />
@@ -28,7 +28,7 @@ export default function Select() {
             <ActivityIndicator size="large" color="#000" />
           </View>
         ) : (
-          <Image style={{ width: '100%' }} source={require('../../assets/images/car.webp')} />
+          <Image style={styles.pic} source={require('../../assets/images/car.webp')} />
         )}
       </View>
 
@@ -50,4 +50,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  title: {
+    textAlign: 'center'
+  },
+  pic: {
+    width: '100%',
+  }
 });
