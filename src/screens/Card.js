@@ -36,7 +36,6 @@ export default function Card({ route }) {
 
       </View>
       <Image style={styles.card} source={{ uri: route.params[0].imgSrc }} />
-
     </SafeAreaView >
   );
 }

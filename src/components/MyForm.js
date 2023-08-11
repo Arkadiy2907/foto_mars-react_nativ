@@ -5,7 +5,7 @@ import { Formik, Field } from 'formik';
 import validationSchema from './ValidationSchema';
 import { varCam } from '../helper/var';
 
-const MyForm = ({ pressHandler, errors }) => {
+const MyForm = ({ pressHandler }) => {
   return (
     <Formik
       initialValues={{ camera: 'FHAZ', date: '' }}
@@ -21,9 +21,14 @@ const MyForm = ({ pressHandler, errors }) => {
               component={Picker}
               onValueChange={props.handleChange('camera')}
               selectedValue={props.values.camera}
+              dropdownIconColor="#FFFFFF"
             >
               {varCam?.map(el => <Picker.Item label={el.label} value={el.value} key={el.id} />)}
             </Field>
+            <Image
+              source={require('../../assets/icons/dropdown.png')}
+              style={styles.arrowIconPicker}
+            />
           </View>
           <Text style={{ paddingLeft: 10 }}>Date</Text>
           <View style={styles.fieldDate}>
@@ -57,12 +62,19 @@ const MyForm = ({ pressHandler, errors }) => {
 
 const styles = StyleSheet.create({
   field: {
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
     backgroundColor: '#FFFFFF',
     borderRadius: 10,
     margin: 10,
     marginBottom: 25,
-    position: 'relative'
+    position: 'relative',
+  },
+  arrowIconPicker: {
+    position: 'absolute',
+    width: 20,
+    height: 20,
+    right: 20,
+    top: 17,
   },
   fieldDate: {
     padding: 12,
@@ -74,7 +86,6 @@ const styles = StyleSheet.create({
     margin: 10,
     marginBottom: 25,
     position: 'relative'
-
   },
   btn: {
     backgroundColor: '#BF2E0E',
