@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import MyForm from '../components/MyForm';
 import { useNavigation } from '@react-navigation/native';
 import pressHandler from '../components/Api';
+import FontWrapper from '../components/FontWrapper';
 
 export default function Select() {
   const navigation = useNavigation();
@@ -18,9 +19,9 @@ export default function Select() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View>
+      <FontWrapper>
         <Text style={styles.title}>Select Camera and Date</Text>
-      </View>
+      </FontWrapper>
       <View style={styles.body}>
         <MyForm pressHandler={handlePress} />
         {isLoading ? (
@@ -51,7 +52,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   title: {
-    textAlign: 'center'
+    textAlign: 'center',
+    fontFamily: 'dosis-bold',
+    fontSize: 22,
   },
   pic: {
     width: '100%',

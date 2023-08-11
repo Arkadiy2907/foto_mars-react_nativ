@@ -4,6 +4,7 @@ import { Picker } from '@react-native-picker/picker';
 import { Formik, Field } from 'formik';
 import validationSchema from './ValidationSchema';
 import { varCam } from '../helper/var';
+import FontWrapper from '../components/FontWrapper';
 
 const MyForm = ({ pressHandler }) => {
   return (
@@ -14,7 +15,9 @@ const MyForm = ({ pressHandler }) => {
     >
       {(props) => (
         <View>
-          <Text style={{ paddingLeft: 10 }}>Rover Camera</Text>
+          <FontWrapper>
+            <Text style={styles.titleFild}>Rover Camera</Text>
+          </FontWrapper>
           <View style={styles.field}>
             <Field
               name="camera"
@@ -23,14 +26,17 @@ const MyForm = ({ pressHandler }) => {
               selectedValue={props.values.camera}
               dropdownIconColor="#FFFFFF"
             >
-              {varCam?.map(el => <Picker.Item label={el.label} value={el.value} key={el.id} />)}
+              {varCam?.map(el =>
+                <Picker.Item label={el.label} value={el.value} key={el.id} />)}
             </Field>
             <Image
               source={require('../../assets/icons/dropdown.png')}
               style={styles.arrowIconPicker}
             />
           </View>
-          <Text style={{ paddingLeft: 10 }}>Date</Text>
+          <FontWrapper>
+            <Text style={styles.titleFild}>Date</Text>
+          </FontWrapper>
           <View style={styles.fieldDate}>
             <TextInput
               name="date"
@@ -50,9 +56,11 @@ const MyForm = ({ pressHandler }) => {
             style={styles.btn}
             onPress={props.handleSubmit}
           >
-            <Text style={styles.btnText}>
-              Explore
-            </Text>
+            <FontWrapper>
+              <Text style={styles.btnText}>
+                Explore
+              </Text>
+            </FontWrapper>
           </TouchableOpacity>
         </View>
       )}
@@ -68,6 +76,11 @@ const styles = StyleSheet.create({
     margin: 10,
     marginBottom: 25,
     position: 'relative',
+  },
+  titleFild: {
+    paddingLeft: 10,
+    fontFamily: 'dosis-light',
+    fontSize: 16,
   },
   arrowIconPicker: {
     position: 'absolute',
@@ -102,6 +115,8 @@ const styles = StyleSheet.create({
   btnText: {
     textAlign: 'center',
     color: '#FFFFFF',
+    fontFamily: 'dosis-bold',
+    fontSize: 17,
     textShadowColor: '#000000',
     textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: 2,
