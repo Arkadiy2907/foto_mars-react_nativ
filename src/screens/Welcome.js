@@ -12,11 +12,10 @@ export default function Welcome() {
     <SafeAreaView>
       <TouchableOpacity
         activeOpacity={0.9}
-        style={{ width: '100%', height: '100%' }}
         onPress={linkToSelect}>
         <ImageBackground
           source={require('../../assets/images/Mars.webp')}
-          style={{ width: '100%', height: '100%' }} >
+          style={styles.background} >
           <Image
             source={require('../../assets/images/title.webp')}
             style={styles.title}
@@ -28,6 +27,10 @@ export default function Welcome() {
 }
 
 const styles = StyleSheet.create({
+  background: {
+    width: '100%',
+    height: '100%'
+  },
   title: {
     marginTop: 62,
     marginLeft: 18,
