@@ -41,7 +41,7 @@ const MyForm = ({ pressHandler }) => {
             />
             <Image
               source={require('../../assets/icons/calendar.png')}
-              style={{ width: 20, height: 20, marginRight: 10 }}
+              style={styles.calendarIcon}
             />
             {props.errors.date && <Text style={styles.errorText}>{props.errors.date}</Text>}
           </View>
@@ -50,7 +50,7 @@ const MyForm = ({ pressHandler }) => {
             style={styles.btn}
             onPress={props.handleSubmit}
           >
-            <Text style={{ textAlign: 'center', color: '#FFFFFF' }}>
+            <Text style={styles.btnText}>
               Explore
             </Text>
           </TouchableOpacity>
@@ -76,6 +76,11 @@ const styles = StyleSheet.create({
     right: 20,
     top: 17,
   },
+  calendarIcon: {
+    width: 20,
+    height: 20,
+    marginRight: 10,
+  },
   fieldDate: {
     padding: 12,
     flexDirection: 'row',
@@ -93,6 +98,10 @@ const styles = StyleSheet.create({
     padding: 15,
     margin: 10,
     borderRadius: 10,
+  },
+  btnText: {
+    textAlign: 'center',
+    color: '#FFFFFF',
   },
   errorText: {
     position: 'absolute',

@@ -16,22 +16,20 @@ export default function Card({ route }) {
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <TouchableOpacity
-          style={{ padding: 10 }}
           activeOpacity={0.5}
           onPress={() => goToBack()}
         >
-          <Image style={{ width: 25, height: 25, objectFit: 'cover' }} source={require('../../assets/icons/backW.png')} />
+          <Image style={styles.icon} source={require('../../assets/icons/backW.png')} />
         </TouchableOpacity >
-        <View style={styles.text}>
-          <Text style={{ color: '#FFFFFF', textAlign: 'center' }}>Photo ID</Text>
-          <Text style={{ color: '#FFFFFF', fontSize: 20 }}>{route.params[0].id}</Text>
+        <View>
+          <Text style={styles.titleIdText}>Photo ID</Text>
+          <Text style={styles.idText}>{route.params[0].id}</Text>
         </View>
         <TouchableOpacity
-          style={{ padding: 10 }}
           activeOpacity={0.5}
           onPress={() => linkToSelect()}
         >
-          <Image style={{ width: 20, height: 20 }} source={require('../../assets/icons/share.png')} />
+          <Image style={styles.icon} source={require('../../assets/icons/share.png')} />
         </TouchableOpacity >
 
       </View>
@@ -56,10 +54,22 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     justifyContent: 'space-between',
   },
-
+  titleIdText: {
+    textAlign: 'center',
+    color: '#FFFFFF',
+  },
+  idText: {
+    color: '#FFFFFF',
+    fontSize: 20
+  },
+  icon: {
+    width: 22,
+    height: 22,
+    padding: 5,
+  },
   card: {
     height: '90%',
     width: '90%',
-    borderRadius: 10
+    borderRadius: 10,
   }
 });
